@@ -1,5 +1,14 @@
 package edu.ucsb.cs156.spring.backenddemo.services;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.HttpHeaders;
+import java.util.List;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpMethod;
+import java.util.Map;
+import org.springframework.http.HttpEntity;
+
 import org.springframework.web.client.RestTemplate;
 
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +22,7 @@ import org.springframework.web.client.HttpClientErrorException;
 @Service
 public class PublicHolidayQueryService {
 
+    ObjectMapper mapper = new ObjectMapper();
 
     private final RestTemplate restTemplate;
 
@@ -20,10 +30,21 @@ public class PublicHolidayQueryService {
         restTemplate = restTemplateBuilder.build();
     }
 
-    public static final String ENDPOINT = "";
+    public static final String ENDPOINT = "https://date.nager.at/api/v2/publicholidays/{year}/{countryCode}";
 
     public String getJSON(String year, String countryCode) throws HttpClientErrorException {
-        return "";
+        log.info("countryCode={}, year={}", countryCode, year);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        Map<String, String> uriVariables = Map.of("countryCode", countryCode, "year", year);
+
+        HttpEntity<String> entity = new HttpEntity<>("body", headers);
+
+        ResponseEntity<String> re = restTemplate.exchange(ENDPOINT, HttpMethod.GET, entity, String.class,
+                uriVariables);
+        return re.getBody();
     }
 
    
