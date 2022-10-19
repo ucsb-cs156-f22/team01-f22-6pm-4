@@ -38,7 +38,7 @@ public class TidesControllerTests {
 
 
     @Test
-    public void test_getTidesInfo() throws Exception {
+    public void test_getTides() throws Exception {
 
         String fakeJsonResult="{ \"fake\" : \"result\" }";
         String beginDate = "20220922";

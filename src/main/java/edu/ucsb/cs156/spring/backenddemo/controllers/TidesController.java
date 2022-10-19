@@ -31,12 +31,12 @@ public class TidesController {
 
     @ApiOperation(value = "Get water level for date range, in local time.", notes = "For station id, see: https://tidesandcurrents.noaa.gov/tide_predictions.html?gid=1393")
     @GetMapping("/get")
-    public ResponseEntity<String> getTidesInfo(
+    public ResponseEntity<String> getTides(
         @ApiParam("beginDate in format yyyymmdd") @RequestParam String beginDate,
         @ApiParam("endDate in format yyyymmdd") @RequestParam String endDate,
         @ApiParam("station, e.g. 9411340 for Santa Barbara") @RequestParam String station
     ) throws JsonProcessingException {
-        log.info("getTidesInfo: beginDate={} endDate={} station={}", beginDate, endDate, station);
+        log.info("getTides: beginDate={} endDate={} station={}", beginDate, endDate, station);
         String result = tidesQueryService.getJSON(beginDate, endDate, station);
         return ResponseEntity.ok().body(result);
     }
