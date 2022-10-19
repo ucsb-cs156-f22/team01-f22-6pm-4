@@ -12,7 +12,7 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.header;
 
-@RestClientTest(EarthquakeQueryService.class)
+@RestClientTest(TidesQueryService.class)
 public class TidesQueryServiceTests {
 
     @Autowired
@@ -27,7 +27,7 @@ public class TidesQueryServiceTests {
         String endDate = "20221207";
         String station = "9411340";
 
-        String expectedURL = EarthquakeQueryService.ENDPOINT.replace("{beginDate}", beginDate)
+        String expectedURL = TidesQueryService.ENDPOINT.replace("{beginDate}", beginDate)
             .replace("{endDate}", endDate).replace("{station}", station);
 
         String fakeJsonResult = "{ \"fake\" : \"result\" }";
