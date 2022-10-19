@@ -49,7 +49,4 @@ public class EarthquakeQueryService {
                 uriVariables);
         return re.getBody();
     }
-
-   
-
 }
