@@ -1,4 +1,4 @@
-ackage edu.ucsb.cs156.spring.backenddemo.controllers;
+package edu.ucsb.cs156.spring.backenddemo.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
