@@ -16,7 +16,8 @@ import org.springframework.web.client.HttpClientErrorException;
 @Slf4j
 @Service
 public class UniversityQueryService {
-
+	
+    ObjectMapper mapper = new ObjectMapper();
 
     private final RestTemplate restTemplate;
 
@@ -24,9 +25,20 @@ public class UniversityQueryService {
         restTemplate = restTemplateBuilder.build();
     }
 
-    public static final String ENDPOINT = "";
+    public static final String ENDPOINT = "http://universities.hipolabs.com/search?name={name}";
 
     public String getJSON(String name) throws HttpClientErrorException {
-       return "";
+       log.info("name={}", name);
+       HttpHeaders headers = new HttpHeaders();
+       headers.setAccept(List.of(MediaType.APPLICATION_JSON));
+       headers.setContentType(MediaType.APPLICATION_JSON);
+
+       HttpEntity<String> entity = new HttpEntity<>(headers);
+
+       Map<String, String> uriVariables = Map.of("name", name);
+
+       ResponseEntity<String> re = restTemplate.exchange(ENDPOINT, HttpMethod.GET, entity, String.class,
+		                       uriVariables);
+       return re.getBody();
     }
 }
