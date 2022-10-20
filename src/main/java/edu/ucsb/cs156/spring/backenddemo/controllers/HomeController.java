@@ -49,6 +49,7 @@ public class HomeController {
         team.add("Jinghan Z.");
         team.add("Shialan Y.");
         team.add("Vyomsarit S.");
+        team.add("Vivian R.");
         resultMap.put("team",team);
         resultMap.put("repo","https://github.com/ucsb-cs156-f22/team01-f22-6pm-4");
         resultMap.put("api-documentation", baseUrl + "swagger-ui/");
