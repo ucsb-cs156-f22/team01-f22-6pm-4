@@ -33,7 +33,6 @@ import org.springframework.util.StringUtils;
 /**
  * Configuration for Swagger, a package that provides documentation
  * for REST API endpoints.
- * 
  * @see <a href=
  *      "https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api">https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api</a>
  */
@@ -48,19 +47,20 @@ public class SpringFoxConfig {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(Predicate.not(PathSelectors.regex("/error.*")))// <6>, regex must be in double quotes.
-                .build();
+            .select()
+            .apis(RequestHandlerSelectors.any())
+            .paths(Predicate.not(PathSelectors.regex("/error.*")))// <6>, regex must be in double quotes.
+            .build();
+
     }
 
     /**
      * This is a workaround for a bug in SpringFox
-     * 
+     *
      * @see <a href=
      *      "https://stackoverflow.com/a/70892119">https://stackoverflow.com/a/70892119</a>
      *
-     * 
+     *
      * @param webEndpointsSupplier
      * @param servletEndpointsSupplier
      * @param controllerEndpointsSupplier
@@ -73,9 +73,10 @@ public class SpringFoxConfig {
 
     @Bean
     public WebMvcEndpointHandlerMapping webEndpointServletHandlerMapping(WebEndpointsSupplier webEndpointsSupplier,
-            ServletEndpointsSupplier servletEndpointsSupplier, ControllerEndpointsSupplier controllerEndpointsSupplier,
-            EndpointMediaTypes endpointMediaTypes, CorsEndpointProperties corsProperties,
-            WebEndpointProperties webEndpointProperties, Environment environment) {
+        ServletEndpointsSupplier servletEndpointsSupplier, ControllerEndpointsSupplier controllerEndpointsSupplier,
+        EndpointMediaTypes endpointMediaTypes, CorsEndpointProperties corsProperties,
+        WebEndpointProperties webEndpointProperties, Environment environment) {
+
         List<ExposableEndpoint<?>> allEndpoints = new ArrayList<ExposableEndpoint<?>>();
         Collection<ExposableWebEndpoint> webEndpoints = webEndpointsSupplier.getEndpoints();
         allEndpoints.addAll(webEndpoints);
@@ -84,10 +85,10 @@ public class SpringFoxConfig {
         String basePath = webEndpointProperties.getBasePath();
         EndpointMapping endpointMapping = new EndpointMapping(basePath);
         boolean shouldRegisterLinksMapping = this.shouldRegisterLinksMapping(webEndpointProperties, environment,
-                basePath);
+            basePath);
         return new WebMvcEndpointHandlerMapping(endpointMapping, webEndpoints, endpointMediaTypes,
-                corsProperties.toCorsConfiguration(), new EndpointLinksResolver(allEndpoints, basePath),
-                shouldRegisterLinksMapping);
+            corsProperties.toCorsConfiguration(), new EndpointLinksResolver(allEndpoints, basePath),
+            shouldRegisterLinksMapping);
     }
 
     /*
@@ -96,8 +97,8 @@ public class SpringFoxConfig {
      */
 
     private boolean shouldRegisterLinksMapping(WebEndpointProperties webEndpointProperties, Environment environment,
-            String basePath) {
+        String basePath) {
         return webEndpointProperties.getDiscovery().isEnabled() && (StringUtils.hasText(basePath)
-                || ManagementPortType.get(environment).equals(ManagementPortType.DIFFERENT));
+            || ManagementPortType.get(environment).equals(ManagementPortType.DIFFERENT));
     }
 }
