@@ -24,8 +24,6 @@ public class ZipCodeQueryService {
     }
 
     public String getJSON(String zipcode) throws HttpClientErrorException {
-
-        log.info("zipcode={}", zipcode);
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
         headers.setContentType(MediaType.APPLICATION_JSON);

@@ -30,7 +30,7 @@ public class ZipCodeQueryServiceTests {
     @Test
     public void test_getJSON() throws URISyntaxException, UnsupportedEncodingException, JsonProcessingException {
 
-        String zip = "93117";
+        String zip = "94087";
         String expectedURL = ZipCodeQueryService.ENDPOINT.replace("{zipcode}", zip);
 
         String fakeJsonResult = "{ \"fake\" : \"result\" }";
