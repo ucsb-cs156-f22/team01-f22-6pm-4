@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@Api(description="Zip code info service")
+@Api(description="Zip Code Information from http://www.zippopotam.us/")
 @RequestMapping("/api/zipcode")
 @Log4j2
 public class ZipCodeController {
@@ -27,7 +27,7 @@ public class ZipCodeController {
     @Autowired
     ZipCodeQueryService zipCodeQueryService;
 
-    @ApiOperation(value="get info about zip code")
+    @ApiOperation(value="Get information about a us zipcode")
     @GetMapping("/get")
     public ResponseEntity<String> getZipCode(
             @ApiParam("zip code, e.g. 93117") @RequestParam String zipcode
