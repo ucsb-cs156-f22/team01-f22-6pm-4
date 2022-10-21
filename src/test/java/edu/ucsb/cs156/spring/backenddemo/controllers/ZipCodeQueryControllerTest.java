@@ -46,12 +46,10 @@ public class ZipCodeQueryControllerTest {
     @Test
     public void test_getZip() throws Exception {
 
+        String zip = "94087";
         String fakeJsonResult="{ \"fake\" : \"result\" }";
-        String zip = "93117";
         when(mockZipCodeQueryService.getJSON(zip)).thenReturn(fakeJsonResult);
-
         String url = String.format("/api/zipcode/get?zipcode=%s", zip);
-
         MvcResult response = mockMvc
                 .perform( get(url).contentType("application/json"))
                 .andExpect(status().isOk()).andReturn();

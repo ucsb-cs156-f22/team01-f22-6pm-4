@@ -27,12 +27,11 @@ public class ZipCodeController {
     @Autowired
     ZipCodeQueryService zipCodeQueryService;
 
-    @ApiOperation(value="get info about zip code")
+    @ApiOperation(value="Zip code info service")
     @GetMapping("/get")
     public ResponseEntity<String> getZipCode(
             @ApiParam("zip code, e.g. 93117") @RequestParam String zipcode
     ) throws JsonProcessingException {
-        log.info("getZipCode: zipcode={}", zipcode);
         String result = zipCodeQueryService.getJSON(zipcode);
         return ResponseEntity.ok().body(result);
     }
