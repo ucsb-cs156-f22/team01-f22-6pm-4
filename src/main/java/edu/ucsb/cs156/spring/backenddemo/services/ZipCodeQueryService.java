@@ -24,16 +24,11 @@ public class ZipCodeQueryService {
     }
 
     public String getJSON(String zipcode) throws HttpClientErrorException {
-
-        log.info("zipcode={}", zipcode);
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
         headers.setContentType(MediaType.APPLICATION_JSON);
-
         Map<String, String> uriVariables = Map.of("zipcode", zipcode);
-
         HttpEntity<String> entity = new HttpEntity<>("body", headers);
-
         ResponseEntity<String> re = restTemplate.exchange(ENDPOINT, HttpMethod.GET, entity, String.class,
                 uriVariables);
         return re.getBody();
