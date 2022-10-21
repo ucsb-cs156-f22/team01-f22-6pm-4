@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 
-@Api(description="Subreddits from reddit")
+@Api(description="info from Reddit.com")
 @Slf4j
 @RestController
 @RequestMapping("/api/reddit")
@@ -29,7 +29,7 @@ public class RedditController {
     @Autowired
     RedditQueryService redditQueryService;
 
-    @ApiOperation(value="Get desired subreddit when provided with subreddit name", notes = "")
+    @ApiOperation(value="Get posts from a subreddit of Reddit.com", notes = "")
     @GetMapping("/get")
 
     public ResponseEntity<String> getSubReddit(
