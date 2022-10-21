@@ -33,7 +33,6 @@ import org.springframework.util.StringUtils;
 /**
  * Configuration for Swagger, a package that provides documentation
  * for REST API endpoints.
- *
  * @see <a href=
  *      "https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api">https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api</a>
  */
@@ -52,6 +51,7 @@ public class SpringFoxConfig {
             .apis(RequestHandlerSelectors.any())
             .paths(Predicate.not(PathSelectors.regex("/error.*")))// <6>, regex must be in double quotes.
             .build();
+
     }
 
     /**
@@ -76,6 +76,7 @@ public class SpringFoxConfig {
         ServletEndpointsSupplier servletEndpointsSupplier, ControllerEndpointsSupplier controllerEndpointsSupplier,
         EndpointMediaTypes endpointMediaTypes, CorsEndpointProperties corsProperties,
         WebEndpointProperties webEndpointProperties, Environment environment) {
+
         List<ExposableEndpoint<?>> allEndpoints = new ArrayList<ExposableEndpoint<?>>();
         Collection<ExposableWebEndpoint> webEndpoints = webEndpointsSupplier.getEndpoints();
         allEndpoints.addAll(webEndpoints);
